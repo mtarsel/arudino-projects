@@ -47,8 +47,8 @@ void motorOnThenOff(){
   int onTime = 2500;  //the number of milliseconds for the motor to turn on for
   int offTime = 1000; //the number of milliseconds for the motor to turn off for
   
- // digitalWrite(motorPin, HIGH); // turns the motor On
- // delay(onTime);                // waits for onTime milliseconds
+  digitalWrite(motorPin, HIGH); // turns the motor On
+ delay(onTime);                // waits for onTime milliseconds
   digitalWrite(motorPin, LOW);  // turns the motor Off
   delay(offTime);               // waits for offTime milliseconds
 }
