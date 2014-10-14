@@ -11,3 +11,7 @@ Below this is a link to information about pyserial. This is how I communicate wi
 
 http://pyserial.sourceforge.net/shortintro.html
 
+###Find Serial Ports
+
+python -m serial.tools.miniterm <your_arduino_port>
+
