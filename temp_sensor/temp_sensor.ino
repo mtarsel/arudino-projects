@@ -19,7 +19,7 @@ int temperaturePin = 0; //the analog pin the TMP36's Vout (sense) pin is connect
  */
 void setup()
 {
-  Serial.begin(9600);  //Start the serial connection with the copmuter
+  Serial.begin(115200);  //Start the serial connection with the copmuter
                        //to view the result open the serial monitor 
                        //last button beneath the file bar (looks like a box with an antenae)
 }
@@ -27,11 +27,11 @@ void setup()
 void loop()                     // run over and over again
 {
  float temperature = getVoltage(temperaturePin);  //getting the voltage reading from the temperature sensor
- //temperature = (temperature - .5) * 100;          //converting from 10 mv per degree wit 500 mV offset
+ //float celsius_temperature = (temperature - .5) * 100;          //converting from 10 mv per degree wit 500 mV offset
                                                   //to degrees ((volatge - 500mV) times 100)
-                                                  
- temperature = (((temperature - .5)*100)*1.8)+32;  //this line is for Fahrenheit                                                    
- Serial.println(temperature);                     //printing the result
+ float farenheit_temperature = (((temperature - .5)*100)*1.8)+32;  //this line is for Fahrenheit                                                    
+ //Serial.println(celsius_temperature);                     //printing the result
+ Serial.println(farenheit_temperature);
  delay(1000);                                     //waiting a second
 }
 
