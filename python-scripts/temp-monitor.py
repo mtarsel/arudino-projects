@@ -1,12 +1,21 @@
 import serial
 #pip install pyserial
-import os
 import time
-import sys
 
-arduino_serial_port = "/dev/ttyACM0"
+
+#ser = serial.Serial(
+#    port = "/dev/ttyACM0",
+#   baudrate = 9600,
+#    parity=serial.PARITY_ODD,
+#    stopbits=serial.STOPBITS_TWO,
+#    bytesize=serial.SEVENBITS
+#)
+
+#ser.open()
+#ser.isOpen()
 print "Opened serial port..."
 
+print ser.readline()
 ser = serial.Serial(arduino_serial_port,24000,timeout=0)
 #ser = serial.Serial(arduino_serial_port,2400,timeout=10)
 
