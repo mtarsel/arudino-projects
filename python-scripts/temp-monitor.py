@@ -15,9 +15,14 @@ import datetime #for logging the timestamp
 import time #for timestamp
 
 arduino_serial_port='/dev/ttyACM0'
+csv_file = "tempData.csv"
+
 
 print "Opening serial port..."
 ser = serial.Serial(arduino_serial_port,115200)
+
+print "Opening csv file..."
+csv_object = open(csv_file, "wb")
 
 print "Reading from serial port..."
 
@@ -31,7 +36,18 @@ while True:
         ser.readline()
         serial_data = ser.readline().split()
 
-        print "timestamp, fernheit: ", st, " ", serial_data
+        str_serial_data = ', '.join(serial_data)
+
+
+        print "timestamp, fernheit: ", st, " ", str_serial_data
+
+        csv_object.write( st);
+        csv_object.write( ",");
+        csv_object.write( str_serial_data);
+        csv_object.write( "\n");
+
 
 ser.close()
+# Close opend file
+csv_object.close()
 print "Closed the serial port. Exiting."
