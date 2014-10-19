@@ -39,13 +39,16 @@ while True:
         str_serial_data = ', '.join(serial_data)
 
 
-        print "timestamp, fernheit: ", st, " ", str_serial_data
+        print st, " ", str_serial_data
 
-        csv_object.write( st);
-        csv_object.write( ",");
-        csv_object.write( str_serial_data);
-        csv_object.write( "\n");
-
+        try:
+            csv_object.write( st);
+            csv_object.write( ",");
+            csv_object.write( str_serial_data);
+            csv_object.write( "\n");
+        except KeyboardInterrupt:
+            print "Quiting.."
+            ser.close()
 
 ser.close()
 # Close opend file
