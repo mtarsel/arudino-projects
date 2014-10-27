@@ -21,9 +21,13 @@ int buttonState = 0;         // variable for reading the pushbutton status
 // The setup() method runs once, when the sketch starts
 
 void setup()   {                
+  Serial.begin(9600);
+  
   // initialize the digital pin as an output:
   pinMode(lockPin, OUTPUT);   
-    pinMode(buttonPin, OUTPUT);    
+  pinMode(buttonPin, OUTPUT);
+  
+  digitalWrite(lockPin,LOW);  
 }
 
 // the loop() method runs over and over again,
@@ -32,24 +36,10 @@ void setup()   {
 void loop()                     
 {
   
-  buttonState = digitalRead(buttonPin);
-  
-  
-  // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {     
-    // turn LED on:    
-     digitalWrite(lockPin, HIGH);   // set the LED on
-     delay(2000);                  // wait for a second
-         digitalWrite(lockPin, LOW); 
-
-  } else {
-    // turn LED off:
-    digitalWrite(lockPin, LOW); 
-  }
-  
- // digitalWrite(lockPin, HIGH);   // set the LED on
- // delay(2000);                  // wait for a second
- // digitalWrite(lockPin, LOW);    // set the LED off
- // delay(5000);                  // wait for a second
+ if(digitalRead(buttonPin) == HIGH){
+     Serial.println("button press detected");
+     digitalWrite(lockPin, HIGH);
+     delay(2000);
+     digitalWrite(lockPin, LOW);
+ }
 }
