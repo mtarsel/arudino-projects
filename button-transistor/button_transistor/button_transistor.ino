@@ -1,26 +1,26 @@
 /*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
-  The circuit:
- * LED connected from digital pin 13 to ground.
-  * Note: On most Arduino boards, there is already an LED on the board
- connected to pin 13, so you don't need any extra components for this example.
-  
- Created 1 June 2005
- By David Cuartielles
- http://arduino.cc/en/Tutorial/Blink
- based on an orginal by H. Barragan for the Wiring i/o board
+ Door Lock with a button and transistor.
+ 
+ The code below will keep the door locked until you push the button, then the door will be unlocked for 2 seconds
+ 
+ Supplies:
+ 12 volt electro-magnetic door lock
+ 12 volt battery
+ Darlyinton TIP120 transistor
+ Push button
+ Some LEDs
  */
 
-int lockPin =  9;    // Relay connected to digital pin 2   <-----Change this to pin 2
-int buttonPin =  2;    // Relay connected to digital pin 2   <-----Change this to pin 2
+int lockPin =  9;    // electric lock connected to digital pin 2   
+int buttonPin =  2;    // button connected to digital pin 2   
 
 // variables will change:
 int buttonState = 0;         // variable for reading the pushbutton status
 
 // The setup() method runs once, when the sketch starts
-
-void setup()   {                
+void setup()   { 
+  
+  //hit Ctrl + Shift + M to see output  
   Serial.begin(9600);
   
   // initialize the digital pin as an output:
@@ -32,14 +32,22 @@ void setup()   {
 
 // the loop() method runs over and over again,
 // as long as the Arduino has power
-
 void loop()                     
 {
   
+ //check if button is pressed (the voltage is high)
  if(digitalRead(buttonPin) == HIGH){
-     Serial.println("button press detected");
+   
+     //debugging code...
+     //Serial.println("button press detected");
+     
+     //send a high voltage to the electric lock and then the door can be opened
      digitalWrite(lockPin, HIGH);
+     
+     //wait 2 seconds
      delay(2000);
+     
+     //lock door again
      digitalWrite(lockPin, LOW);
  }
 }
